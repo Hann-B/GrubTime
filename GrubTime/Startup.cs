@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using GrubTime.Models;
 using Microsoft.EntityFrameworkCore;
+using GrubTime.Extensions;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace GrubTime
 {
@@ -32,6 +35,9 @@ namespace GrubTime
             // Add framework services.
             services.AddMvc();
 
+            //Middleware serve JSON responses
+            
+
             var connection = @"Server=localhost\SQLEXPRESS;Database=GrubTime;Trusted_Connection=True;";
             services.AddDbContext<GrubTimeContext>(options => options.UseSqlServer(connection));
         }
@@ -48,6 +54,23 @@ namespace GrubTime
                 Authority = $"https://{Configuration["Auth0:Domain"]}/"
             };
             app.UseJwtBearerAuthentication(options);
+
+            //Middleware Here
+            app.UseMyFirstMiddleware();
+
+            //app.Map(new PathString("/Search"), builder =>
+            // {
+            //     builder.Run(async context =>
+            //     {
+            //         string respont = JsonConvert.SerializeObject(new { DateTime.UtcNow, Version = _version });
+            //         context.Response.StatusCode = StatusCodes.Status200OK;
+            //         context.Response.ContentType = "application/json";
+            //         context.Response.ContentLength = response.Length;
+            //         await context.Response.WriteAsync(response);
+
+            //         });
+ 
+            //     });
 
             app.UseMvc();
 

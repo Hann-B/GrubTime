@@ -8,14 +8,16 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using GrubTime.Models;
 using GrubTime.ViewModels;
+using GrubTime.Middleware;
+using System.Collections;
 
 namespace GrubTime.Controllers
 {
     [Produces("application/json")]
-    [Route("api/GooglePlaces")]
-    public class GooglePlacesController : Controller
+    [Route("api/Places")]
+    public class PlacesController : Controller
     {
-        //GET: api/GooglePlaces
+        //GET: api/Places
         [HttpGet]
         public async Task<IEnumerable<PlacesVM>> Get(string latitude, string longitude)
         {
@@ -29,5 +31,17 @@ namespace GrubTime.Controllers
                 return result.results.Select(s => new PlacesVM(s));
             }
         }
+
+        //Middleware used to filter search query
+        [MiddlewareFilter(typeof(MyFirstMiddleware))]
+        [HttpGet]
+        public IActionResult Index(string Latitude, string Longitude, int radius)
+        {
+            //Result list of places
+            var places=0;
+            //return list of places as JSON
+            return Json(places);
+        }
+        
     }
 }

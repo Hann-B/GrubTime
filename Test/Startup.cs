@@ -40,7 +40,6 @@ namespace Test
             loggerFactory.AddDebug();
 
             //UseMiddleware Calls
-            app.UseMyFirstMiddleware();
 
 
             app.UseMvc();

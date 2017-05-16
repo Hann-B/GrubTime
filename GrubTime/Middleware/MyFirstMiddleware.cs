@@ -1,5 +1,4 @@
-﻿using GrubTime.Services;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,30 +10,17 @@ namespace GrubTime.Middleware
     {
         //constructor
         private readonly RequestDelegate _next;
-        private readonly Type _serviceType;
-        private readonly string _endpointPath;
-        private readonly ServiceDescription _service;
-        //private readonly MessageEncoder _messageEncoder;
 
-        public MyFirstMiddleware(RequestDelegate next, Type seriveType, string path)
+        public MyFirstMiddleware(RequestDelegate next)
         {
             _next = next;
-            _service = new ServiceDescription(seriveType);
-            _endpointPath = path;
         }
         
         //HTTP request contexts
         public async Task Invoke(HttpContext httpContext)
         {
-            if (httpContext.Request.Path.Equals(_endpointPath, StringComparison.Ordinal))
-            {
-                //Read request message
-                
-            }
-            else
-            {
-                await _next(httpContext);
-            }
+            await httpContext.Response.WriteAsync("Hello from MiddleWare");
+            await _next.Invoke(httpContext);
         }
     }
 }
