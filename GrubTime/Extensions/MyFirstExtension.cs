@@ -9,9 +9,9 @@ namespace GrubTime.Extensions
 {
     public static class MyFirstExtension
     {
-        public static IApplicationBuilder UseMyFirstMiddleware(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseMyFirstMiddleware<T>(this IApplicationBuilder builder, string path)
         {
-            return builder.UseMiddleware<MyFirstMiddleware>();
+            return builder.UseMiddleware<MyFirstMiddleware>(typeof(T), path);
         }
     }
 }

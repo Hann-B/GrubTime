@@ -17,7 +17,7 @@ namespace GrubTime.Controllers
     {
         //GET: api/GooglePlaces
         [HttpGet]
-        public async Task<string> Get(string latitude, string longitude)
+        public async Task<IEnumerable<PlacesVM>> Get(string latitude, string longitude)
         {
             using (var client = new HttpClient())
             {
