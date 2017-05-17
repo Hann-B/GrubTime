@@ -9,9 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using GrubTime.Models;
 using Microsoft.EntityFrameworkCore;
-using GrubTime.Extensions;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using GrubTime.Middleware;
 
 namespace GrubTime
 {
@@ -34,12 +34,9 @@ namespace GrubTime
         {
             // Add framework services.
             services.AddMvc();
-
-            //Middleware serve JSON responses
             
-
-            var connection = @"Server=localhost\SQLEXPRESS;Database=GrubTime;Trusted_Connection=True;";
-            services.AddDbContext<GrubTimeContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<GrubTimeContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("Database")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,21 +53,29 @@ namespace GrubTime
             app.UseJwtBearerAuthentication(options);
 
             //Middleware Here
-            app.UseMyFirstMiddleware();
-
+            //app.Map is used to build mini pipeline for certain URL
+            //when user visits ~/Search builder will run
             //app.Map(new PathString("/Search"), builder =>
             // {
             //     builder.Run(async context =>
             //     {
-            //         string respont = JsonConvert.SerializeObject(new { DateTime.UtcNow, Version = _version });
+            //         string response = String.Format(JsonConvert.SerializeObject("Google:Nearby"));
             //         context.Response.StatusCode = StatusCodes.Status200OK;
             //         context.Response.ContentType = "application/json";
             //         context.Response.ContentLength = response.Length;
             //         await context.Response.WriteAsync(response);
-
-            //         });
- 
+            //         //to continue to next handler
+            //         //return next();
+            //         //else pipeline is short circuited
             //     });
+
+            // });
+
+            //app.MapWhen is conditional
+            //when condition is met middleware is ran 
+            //ie: ~/Search
+
+            //app.Run = end of the line middleware
 
             app.UseMvc();
 

@@ -4,12 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
-using Newtonsoft.Json;
-using GrubTime.Models;
-using GrubTime.ViewModels;
 using GrubTime.Middleware;
-using System.Collections;
 
 namespace GrubTime.Controllers
 {
@@ -17,31 +12,38 @@ namespace GrubTime.Controllers
     [Route("api/Places")]
     public class PlacesController : Controller
     {
-        //GET: api/Places
+        // GET: api/Places
         [HttpGet]
-        public async Task<IEnumerable<PlacesVM>> Get(string latitude, string longitude)
+        public IEnumerable<string> Get()
         {
-            using (var client = new HttpClient())
-            {
-                var response = await client.GetStringAsync
-                    (string.Format
-                    ("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={0},{1}&radius=500&type=restaurant&key=AIzaSyAU8uC7NC2lOPh3-MDMLEwKelbCwIL28J4"
-                    , latitude, longitude));
-                var result = JsonConvert.DeserializeObject<PlacesApiQueryResponse>(response);
-                return result.results.Select(s => new PlacesVM(s));
-            }
+            return new string[] { "value1", "value2" };
         }
 
-        //Middleware used to filter search query
-        [MiddlewareFilter(typeof(MyFirstMiddleware))]
-        [HttpGet]
-        public IActionResult Index(string Latitude, string Longitude, int radius)
+        // GET: api/Places/5
+        [HttpGet("{id}", Name = "Get")]
+        public string Get(int id)
         {
-            //Result list of places
-            var places=0;
-            //return list of places as JSON
-            return Json(places);
+            return "value";
         }
         
+        // POST: api/Places
+        [HttpPost]
+        //[MiddlewareFilter(typeof(ReqParseMiddleware))]
+        public string Post([FromBody]string value)
+        {
+            return "your value is " + value;
+        }
+        
+        // PUT: api/Places/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+        
+        // DELETE: api/ApiWithActions/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
     }
 }

@@ -8,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using GrubTime.Middleware;
-using GrubTime.Extensions;
 
 namespace Test
 {
