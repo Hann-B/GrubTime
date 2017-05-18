@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.IO;
+using Newtonsoft.Json.Linq;
+using Microsoft.ApplicationInsights.DataContracts;
+using GrubTime.ViewModels;
+using Microsoft.AspNetCore.Http.Internal;
+using System.Text;
 
 namespace GrubTime.Middleware
 {
@@ -22,6 +27,36 @@ namespace GrubTime.Middleware
         public async Task Invoke(HttpContext httpContext)
         {
             //TODO: Parse request coming for values of location and radius
+            var request = string.Empty;
+            using (var newRequest = new MemoryStream())
+            {
+                //read request
+                var bodyStr = "";
+                var req = httpContext.Request;
+
+                // Allows using several time the stream in ASP.Net Core
+                req.EnableRewind();
+
+                // Arguments: Stream, Encoding, detect encoding, buffer size 
+                // AND, the most important: keep stream opened
+                using (StreamReader reader
+                          = new StreamReader(req.Body, Encoding.UTF8, true, 1024, true))
+                {
+                    bodyStr = reader.ReadToEnd();
+                }
+
+                // Rewind, so the core is not lost when it looks the body for the request
+                req.Body.Position = 0;
+                //assign data
+                var data = JsonConvert.DeserializeObject<NearbySearchVM>(bodyStr);
+                //data.longitude = NearbySearchVM Longitude
+                //data.latitude = NearbySearchVM Latitude
+                //data.radius = NearbySearchVM Radius
+               // var newData = new NearbySearchVM(data);
+                httpContext.Items.Add("mwkey", data);
+                 
+              
+            }
 
             await _next(httpContext);
         }

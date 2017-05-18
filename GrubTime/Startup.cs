@@ -56,9 +56,9 @@ namespace GrubTime
             app.UseJwtBearerAuthentication(options);
 
             //Routing to controller
-            var routeBuilder = new RouteBuilder(app);
-            routeBuilder.MapPost("post", context => context.Response.WriteAsync("Posting!"));
-            app.UseRouter(routeBuilder.Build());
+            //var routeBuilder = new RouteBuilder(app);
+            //routeBuilder.MapPost("post", context => context.Response.WriteAsync("Posting!"));
+            //app.UseRouter(routeBuilder.Build());
 
             //Middleware Here
             //read request

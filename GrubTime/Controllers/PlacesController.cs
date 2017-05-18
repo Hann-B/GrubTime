@@ -30,7 +30,7 @@ namespace GrubTime.Controllers
         [HttpPost]
         public string Post([FromBody]string value)
         {
-            return "your value is " + value;
+            return ViewBag.MiddlwareKey = HttpContext.Items["mwkey"]; 
         }
 
         // PUT: api/Places/5

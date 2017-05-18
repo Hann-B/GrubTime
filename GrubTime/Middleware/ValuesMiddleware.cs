@@ -19,7 +19,8 @@ namespace GrubTime.Middleware
 
         public async Task Invoke(HttpContext httpContext)
         {
-            //TODO: 
+            //TODO: inject data into google api
+            var data = httpContext.Items["mwkey"];
             await _next(httpContext);
         }
     }

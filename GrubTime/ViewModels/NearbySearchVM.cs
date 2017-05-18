@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace GrubTime.ViewModels
 {
-    public class PlacesVM
+    public class NearbySearchVM
     {
-        private Result s;
-
-        public PlacesVM(Result s)
-        {
-            this.s = s;
-        }
+        public decimal Longitude { get; set; }
+        public decimal Latitude { get; set; }
+        public int Radius { get; set; }
     }
 }
