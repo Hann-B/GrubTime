@@ -25,21 +25,20 @@ namespace GrubTime.Controllers
         {
             return "value";
         }
-        
+
         // POST: api/Places
         [HttpPost]
-        //[MiddlewareFilter(typeof(ReqParseMiddleware))]
         public string Post([FromBody]string value)
         {
             return "your value is " + value;
         }
-        
+
         // PUT: api/Places/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
-        
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)

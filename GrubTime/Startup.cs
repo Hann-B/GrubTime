@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using GrubTime.Middleware;
+using Microsoft.AspNetCore.Routing;
 
 namespace GrubTime
 {
@@ -34,6 +35,8 @@ namespace GrubTime
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddRouting();
             
             services.AddDbContext<GrubTimeContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("Database")));
@@ -52,7 +55,20 @@ namespace GrubTime
             };
             app.UseJwtBearerAuthentication(options);
 
+            //Routing to controller
+            var routeBuilder = new RouteBuilder(app);
+            routeBuilder.MapPost("post", context => context.Response.WriteAsync("Posting!"));
+            app.UseRouter(routeBuilder.Build());
+
             //Middleware Here
+            //read request
+            app.UseReqParseMiddleware();
+
+            //attain values
+            app.UseValuesMiddleware();
+
+            //query api, write response
+            app.UseResponseMiddleware();
             //app.Map is used to build mini pipeline for certain URL
             //when user visits ~/Search builder will run
             //app.Map(new PathString("/Search"), builder =>
@@ -77,8 +93,10 @@ namespace GrubTime
 
             //app.Run = end of the line middleware
 
-            app.UseMvc();
+            app.UseMvc(routes=>
+            routes.MapRoute("nearbySearch", "Places/Post"));
 
         }
+
     }
 }
