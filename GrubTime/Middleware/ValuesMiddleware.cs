@@ -12,6 +12,8 @@ using GrubTime.Models;
 using Microsoft.IdentityModel.Protocols;
 using System.Net;
 using System.IO;
+using System.Text;
+using System.Net.Http;
 
 namespace GrubTime.Middleware
 {
@@ -41,14 +43,20 @@ namespace GrubTime.Middleware
                     attr.Longitude, attr.Latitude, attr.Radius);
 
                 //query google
-                var query = WebRequest.Create(placeApiUrl);
-                var response = query.GetResponseAsync();
+                HttpWebRequest query = (HttpWebRequest)WebRequest.Create(placeApiUrl);
+                WebResponse response = await query.GetResponseAsync();
+
+                //save results opt2
                 var raw = String.Empty;
-                using (var reader = new StreamReader(response.wannGetResponseStream()))
+                using (var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8, true, 1024,true))
                 {
                     raw = reader.ReadToEnd();
                 }
+
+                //return to JSON
                 var results = JsonConvert.DeserializeObject<PlacesApiQueryResponse>(raw);
+
+                //save changes to package
                 httpContext.Items.Add("parameters", results);
 
             }
