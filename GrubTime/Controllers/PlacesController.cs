@@ -27,10 +27,12 @@ namespace GrubTime.Controllers
         }
 
         // POST: api/Places
+        //Nearby Searches
+        //Arguments: Longitude, Latitude, Radius
         [HttpPost]
         public string Post([FromBody]string value)
         {
-            return ViewBag.MiddlwareKey = HttpContext.Items["mwkey"]; 
+            return ViewBag.MiddlwareParameters = HttpContext.Items["parameters"]; 
         }
 
         // PUT: api/Places/5

@@ -10,6 +10,6 @@ namespace GrubTime.ViewModels
     {
         public decimal Longitude { get; set; }
         public decimal Latitude { get; set; }
-        public int Radius { get; set; }
+        public int Radius { get; set; } = 15;
     }
 }

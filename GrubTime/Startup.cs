@@ -13,11 +13,14 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using GrubTime.Middleware;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.DotNet.PlatformAbstractions;
+using Microsoft.Extensions.Options;
 
 namespace GrubTime
 {
     public class Startup
     {
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -35,6 +38,9 @@ namespace GrubTime
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddOptions();
+            services.Configure<Google>(Configuration.GetSection("Google"));
 
             services.AddRouting();
             
@@ -55,46 +61,25 @@ namespace GrubTime
             };
             app.UseJwtBearerAuthentication(options);
 
-            //Routing to controller
-            //var routeBuilder = new RouteBuilder(app);
-            //routeBuilder.MapPost("post", context => context.Response.WriteAsync("Posting!"));
-            //app.UseRouter(routeBuilder.Build());
-
-            //Middleware Here
-            //read request
+            //Middleware
+            //read request attain values
             app.UseReqParseMiddleware();
 
-            //attain values
-            app.UseValuesMiddleware();
-
             //query api, write response
+            app.UseValuesMiddleware();
+            var GoogleNearbyApi = Configuration.GetSection("Google").Get<Google>();
+            app.UseValuesMiddleware(GoogleNearbyApi);
+
+            //beautify response
             app.UseResponseMiddleware();
+
             //app.Map is used to build mini pipeline for certain URL
-            //when user visits ~/Search builder will run
-            //app.Map(new PathString("/Search"), builder =>
-            // {
-            //     builder.Run(async context =>
-            //     {
-            //         string response = String.Format(JsonConvert.SerializeObject("Google:Nearby"));
-            //         context.Response.StatusCode = StatusCodes.Status200OK;
-            //         context.Response.ContentType = "application/json";
-            //         context.Response.ContentLength = response.Length;
-            //         await context.Response.WriteAsync(response);
-            //         //to continue to next handler
-            //         //return next();
-            //         //else pipeline is short circuited
-            //     });
-
-            // });
-
             //app.MapWhen is conditional
             //when condition is met middleware is ran 
             //ie: ~/Search
-
             //app.Run = end of the line middleware
 
-            app.UseMvc(routes=>
-            routes.MapRoute("nearbySearch", "Places/Post"));
+            app.UseMvc();
 
         }
 

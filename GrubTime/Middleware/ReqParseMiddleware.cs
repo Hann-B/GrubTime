@@ -34,7 +34,7 @@ namespace GrubTime.Middleware
                 var bodyStr = "";
                 var req = httpContext.Request;
 
-                // Allows using several time the stream in ASP.Net Core
+                // Allows repeated use of the stream in ASP.Net Core
                 req.EnableRewind();
 
                 // Arguments: Stream, Encoding, detect encoding, buffer size 
@@ -45,19 +45,15 @@ namespace GrubTime.Middleware
                     bodyStr = reader.ReadToEnd();
                 }
 
-                // Rewind, so the core is not lost when it looks the body for the request
+                // Rewind, so the core is not lost when it looks to the body for the request
                 req.Body.Position = 0;
+
                 //assign data
                 var data = JsonConvert.DeserializeObject<NearbySearchVM>(bodyStr);
-                //data.longitude = NearbySearchVM Longitude
-                //data.latitude = NearbySearchVM Latitude
-                //data.radius = NearbySearchVM Radius
-               // var newData = new NearbySearchVM(data);
-                httpContext.Items.Add("mwkey", data);
-                 
-              
-            }
 
+                //store data
+                httpContext.Items.Add("parameters", data);
+            }
             await _next(httpContext);
         }
     }
