@@ -34,32 +34,29 @@ namespace GrubTime.Middleware
         {
             var data = httpContext.Items["parameters"];
 
-            if (httpContext.Items.ContainsKey(data))
+            var attr = JsonConvert.DeserializeObject<NearbySearchVM>(data.ToString());
+
+            //inject data into google api
+            var placeApiUrl = string.Format(_google.Nearby,
+                attr.Longitude, attr.Latitude, attr.Radius);
+
+            //query google
+            HttpWebRequest query = (HttpWebRequest)WebRequest.Create(placeApiUrl);
+            WebResponse response = await query.GetResponseAsync();
+
+            //save results
+            var raw = String.Empty;
+            using (var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8, true, 1024, true))
             {
-                var attr = (NearbySearchVM)data;
-
-                //inject data into google api
-                var placeApiUrl = string.Format(_google.Nearby, 
-                    attr.Longitude, attr.Latitude, attr.Radius);
-
-                //query google
-                HttpWebRequest query = (HttpWebRequest)WebRequest.Create(placeApiUrl);
-                WebResponse response = await query.GetResponseAsync();
-
-                //save results opt2
-                var raw = String.Empty;
-                using (var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8, true, 1024,true))
-                {
-                    raw = reader.ReadToEnd();
-                }
-
-                //return to JSON
-                var results = JsonConvert.DeserializeObject<PlacesApiQueryResponse>(raw);
-
-                //save changes to package
-                httpContext.Items.Add("parameters", results);
-
+                raw = reader.ReadToEnd();
             }
+
+            //return to JSON
+            var results = JsonConvert.DeserializeObject<PlacesApiQueryResponse>(raw);
+
+            //save changes to package
+            httpContext.Items.Add("parameters", results);
+
             await _next(httpContext);
         }
     }
