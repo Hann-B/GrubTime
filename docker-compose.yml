@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  grubtime:
+    image: grubtime
+    build:
+      context: ./GrubTime
+      dockerfile: Dockerfile

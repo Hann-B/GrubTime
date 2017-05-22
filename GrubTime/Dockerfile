@@ -1,0 +1,10 @@
+FROM microsoft/aspnetcore-build
+WORKDIR /app
+COPY . .
+
+
+RUN dotnet restore
+RUN dotnet publish -c Release -o out
+
+
+ENTRYPOINT ["dotnet", "out/GrubTime.dll"]

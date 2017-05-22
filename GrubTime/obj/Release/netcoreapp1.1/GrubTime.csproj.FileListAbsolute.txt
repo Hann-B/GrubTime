@@ -1,0 +1,8 @@
+C:\Users\Hanna\documents\Visual Studio 2017\Projects\GrubTime\GrubTime\bin\Release\netcoreapp1.1\GrubTime.deps.json
+C:\Users\Hanna\documents\Visual Studio 2017\Projects\GrubTime\GrubTime\bin\Release\netcoreapp1.1\GrubTime.runtimeconfig.json
+C:\Users\Hanna\documents\Visual Studio 2017\Projects\GrubTime\GrubTime\bin\Release\netcoreapp1.1\GrubTime.runtimeconfig.dev.json
+C:\Users\Hanna\documents\Visual Studio 2017\Projects\GrubTime\GrubTime\bin\Release\netcoreapp1.1\GrubTime.dll
+C:\Users\Hanna\documents\Visual Studio 2017\Projects\GrubTime\GrubTime\bin\Release\netcoreapp1.1\GrubTime.pdb
+C:\Users\Hanna\documents\Visual Studio 2017\Projects\GrubTime\GrubTime\obj\Release\netcoreapp1.1\GrubTime.AssemblyInfo.cs
+C:\Users\Hanna\documents\Visual Studio 2017\Projects\GrubTime\GrubTime\obj\Release\netcoreapp1.1\GrubTime.dll
+C:\Users\Hanna\documents\Visual Studio 2017\Projects\GrubTime\GrubTime\obj\Release\netcoreapp1.1\GrubTime.pdb
