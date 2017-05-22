@@ -32,13 +32,12 @@ namespace GrubTime.Middleware
 
         public async Task Invoke(HttpContext httpContext)
         {
-            var data = httpContext.Items["parameters"];
-
-            var attr = JsonConvert.DeserializeObject<NearbySearchVM>(data.ToString());
+            var attr = httpContext.Items["parameters"] as NearbySearchVM;
+            
 
             //inject data into google api
             var placeApiUrl = string.Format(_google.Nearby,
-                attr.Longitude, attr.Latitude, attr.Radius);
+                attr.Location, attr.Radius);
 
             //query google
             HttpWebRequest query = (HttpWebRequest)WebRequest.Create(placeApiUrl);

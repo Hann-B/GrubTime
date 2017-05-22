@@ -11,5 +11,11 @@ namespace GrubTime.ViewModels
         public decimal Longitude { get; set; }
         public decimal Latitude { get; set; }
         public int Radius { get; set; } = 15;
+        public string Location {
+            get
+            {
+                return $"{Latitude},{Longitude}";
+            }
+        }
     }
 }

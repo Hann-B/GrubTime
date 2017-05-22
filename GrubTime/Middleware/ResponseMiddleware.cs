@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using GrubTime.Models;
 
 namespace GrubTime.Middleware
 {
@@ -19,6 +20,10 @@ namespace GrubTime.Middleware
 
         public async Task Invoke(HttpContext httpContext)
         {
+            //Result List
+            var attr = httpContext.Items["parameters"] as PlacesApiQueryResponse;
+
+            
 
             await _next(httpContext);
         }
