@@ -32,9 +32,9 @@ namespace GrubTime.Controllers
         //Arguments: Longitude, Latitude, Radius
         [HttpPost]
         //[MiddlewareFilter(typeof(ReqParseMiddleware))]
-        public object Post([FromBody]string value)
+        public StatusCodeResult Post([FromBody]string value)
         {
-            return HttpContext.Items["results"]; 
+            return Ok();
         }
 
         // PUT: api/Places/5

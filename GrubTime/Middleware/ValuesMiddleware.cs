@@ -30,7 +30,7 @@ namespace GrubTime.Middleware
             _google = optionsAccessor.Value;
         }
 
-        public async Task Invoke(HttpContext httpContext)
+        public async Task<int> Invoke(HttpContext httpContext)
         {
             var attr = httpContext.Items["parameters"] as NearbySearchVM;
             
@@ -51,12 +51,14 @@ namespace GrubTime.Middleware
             }
 
             //return to JSON
-            var results = JsonConvert.DeserializeObject<PlacesApiQueryResponse>(raw);
+            var allresults = JsonConvert.DeserializeObject<PlacesApiQueryResponse>(raw);
 
             //save changes to package
-            httpContext.Items.Add("results", results);
-
-            await _next(httpContext);
+            httpContext.Items.Add("results", allresults);
+            httpContext.Response.ContentType = "application/json";
+            await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(allresults));
+            //await _next(httpContext);
+            return 200;
         }
     }
 

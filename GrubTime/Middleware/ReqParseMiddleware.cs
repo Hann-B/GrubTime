@@ -25,7 +25,7 @@ namespace GrubTime.Middleware
             _next = next;
         }
 
-        public async Task Invoke(HttpContext httpContext)
+        public async Task<int> Invoke(HttpContext httpContext)
         {
             //TODO: Parse request coming for values of location and radius
             var request = string.Empty;
@@ -56,8 +56,8 @@ namespace GrubTime.Middleware
                 httpContext.Items.Add("parameters", data);
             }
             await _next(httpContext);
-
-            //var list = httpContext.Items["results"] as PlacesApiQueryResponse;
+            var resultlist = httpContext.Items["results"]as PlacesApiQueryResponse;
+            return 200;
         }
     }
 
