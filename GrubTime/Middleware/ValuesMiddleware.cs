@@ -54,7 +54,7 @@ namespace GrubTime.Middleware
             var results = JsonConvert.DeserializeObject<PlacesApiQueryResponse>(raw);
 
             //save changes to package
-            //httpContext.Items.Add("parameters", results);
+            httpContext.Items.Add("results", results);
 
             await _next(httpContext);
         }

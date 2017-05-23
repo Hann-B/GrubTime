@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using GrubTime.Middleware;
+using GrubTime.Models;
 
 namespace GrubTime.Controllers
 {
@@ -30,9 +31,10 @@ namespace GrubTime.Controllers
         //Nearby Searches
         //Arguments: Longitude, Latitude, Radius
         [HttpPost]
+        //[MiddlewareFilter(typeof(ReqParseMiddleware))]
         public object Post([FromBody]string value)
         {
-            return HttpContext.Items["parameters"]; 
+            return HttpContext.Items["results"]; 
         }
 
         // PUT: api/Places/5

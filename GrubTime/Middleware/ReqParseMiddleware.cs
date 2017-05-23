@@ -11,6 +11,7 @@ using Microsoft.ApplicationInsights.DataContracts;
 using GrubTime.ViewModels;
 using Microsoft.AspNetCore.Http.Internal;
 using System.Text;
+using GrubTime.Models;
 
 namespace GrubTime.Middleware
 {
@@ -55,6 +56,10 @@ namespace GrubTime.Middleware
                 httpContext.Items.Add("parameters", data);
             }
             await _next(httpContext);
+
+            return httpContext.Items["results"];
+
+            //var list = httpContext.Items["results"] as PlacesApiQueryResponse;
         }
     }
 

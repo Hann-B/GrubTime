@@ -71,7 +71,7 @@ namespace GrubTime
             app.UseValuesMiddleware(GoogleNearbyApi);
 
             //beautify response
-            app.UseResponseMiddleware();
+            //app.UseResponseMiddleware();
 
             //app.Map is used to build mini pipeline for certain URL
             //app.MapWhen is conditional

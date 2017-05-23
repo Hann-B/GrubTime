@@ -21,10 +21,7 @@ namespace GrubTime.Middleware
         public async Task Invoke(HttpContext httpContext)
         {
             //Result List
-            var attr = httpContext.Items["parameters"] as PlacesApiQueryResponse;
-
-            
-
+            //var attr = httpContext.Items["parameters"] as PlacesApiQueryResponse;
             await _next(httpContext);
         }
     }
