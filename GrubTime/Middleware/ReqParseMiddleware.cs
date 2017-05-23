@@ -57,8 +57,6 @@ namespace GrubTime.Middleware
             }
             await _next(httpContext);
 
-            return httpContext.Items["results"];
-
             //var list = httpContext.Items["results"] as PlacesApiQueryResponse;
         }
     }
