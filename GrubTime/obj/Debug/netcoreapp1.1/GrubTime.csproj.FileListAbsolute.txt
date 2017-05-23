@@ -7,3 +7,12 @@ c:\users\hanna\documents\visual studio 2017\Projects\GrubTime\GrubTime\bin\Debug
 c:\users\hanna\documents\visual studio 2017\Projects\GrubTime\GrubTime\obj\Debug\netcoreapp1.1\GrubTime.dll
 c:\users\hanna\documents\visual studio 2017\Projects\GrubTime\GrubTime\obj\Debug\netcoreapp1.1\GrubTime.pdb
 C:\Users\Hanna\Documents\Visual Studio 2017\Projects\GrubTime\GrubTime\obj\Debug\netcoreapp1.1\GrubTime.csprojResolveAssemblyReference.cache
+C:\Users\markt\Documents\github\GrubTime\GrubTime\bin\Debug\netcoreapp1.1\GrubTime.deps.json
+C:\Users\markt\Documents\github\GrubTime\GrubTime\bin\Debug\netcoreapp1.1\GrubTime.runtimeconfig.json
+C:\Users\markt\Documents\github\GrubTime\GrubTime\bin\Debug\netcoreapp1.1\GrubTime.runtimeconfig.dev.json
+C:\Users\markt\Documents\github\GrubTime\GrubTime\bin\Debug\netcoreapp1.1\GrubTime.dll
+C:\Users\markt\Documents\github\GrubTime\GrubTime\bin\Debug\netcoreapp1.1\GrubTime.pdb
+C:\Users\markt\Documents\github\GrubTime\GrubTime\obj\Debug\netcoreapp1.1\GrubTime.csprojResolveAssemblyReference.cache
+C:\Users\markt\Documents\github\GrubTime\GrubTime\obj\Debug\netcoreapp1.1\GrubTime.AssemblyInfo.cs
+C:\Users\markt\Documents\github\GrubTime\GrubTime\obj\Debug\netcoreapp1.1\GrubTime.dll
+C:\Users\markt\Documents\github\GrubTime\GrubTime\obj\Debug\netcoreapp1.1\GrubTime.pdb

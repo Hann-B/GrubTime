@@ -9,3 +9,14 @@ C:\Users\Hanna\Documents\Visual Studio 2017\Projects\GrubTime\Test\bin\Debug\net
 C:\Users\Hanna\Documents\Visual Studio 2017\Projects\GrubTime\Test\bin\Debug\netcoreapp1.1\GrubTime.pdb
 C:\Users\Hanna\Documents\Visual Studio 2017\Projects\GrubTime\Test\obj\Debug\netcoreapp1.1\Test.dll
 C:\Users\Hanna\Documents\Visual Studio 2017\Projects\GrubTime\Test\obj\Debug\netcoreapp1.1\Test.pdb
+C:\Users\markt\Documents\github\GrubTime\Test\bin\Debug\netcoreapp1.1\Test.deps.json
+C:\Users\markt\Documents\github\GrubTime\Test\bin\Debug\netcoreapp1.1\Test.runtimeconfig.json
+C:\Users\markt\Documents\github\GrubTime\Test\bin\Debug\netcoreapp1.1\Test.runtimeconfig.dev.json
+C:\Users\markt\Documents\github\GrubTime\Test\bin\Debug\netcoreapp1.1\Test.dll
+C:\Users\markt\Documents\github\GrubTime\Test\bin\Debug\netcoreapp1.1\Test.pdb
+C:\Users\markt\Documents\github\GrubTime\Test\bin\Debug\netcoreapp1.1\GrubTime.dll
+C:\Users\markt\Documents\github\GrubTime\Test\bin\Debug\netcoreapp1.1\GrubTime.pdb
+C:\Users\markt\Documents\github\GrubTime\Test\obj\Debug\netcoreapp1.1\Test.csprojResolveAssemblyReference.cache
+C:\Users\markt\Documents\github\GrubTime\Test\obj\Debug\netcoreapp1.1\Test.AssemblyInfo.cs
+C:\Users\markt\Documents\github\GrubTime\Test\obj\Debug\netcoreapp1.1\Test.dll
+C:\Users\markt\Documents\github\GrubTime\Test\obj\Debug\netcoreapp1.1\Test.pdb

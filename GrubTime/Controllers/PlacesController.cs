@@ -30,9 +30,9 @@ namespace GrubTime.Controllers
         //Nearby Searches
         //Arguments: Longitude, Latitude, Radius
         [HttpPost]
-        public string Post([FromBody]string value)
+        public object Post([FromBody]string value)
         {
-            return ViewBag.MiddlwareParameters = HttpContext.Items["parameters"]; 
+            return HttpContext.Items["parameters"]; 
         }
 
         // PUT: api/Places/5
