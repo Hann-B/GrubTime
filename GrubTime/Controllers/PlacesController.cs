@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using GrubTime.Middleware;
 using GrubTime.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GrubTime.Controllers
 {
@@ -29,9 +30,8 @@ namespace GrubTime.Controllers
 
         // POST: api/Places
         //Nearby Searches
-        //Arguments: Longitude, Latitude, Radius
+        [Authorize]
         [HttpPost]
-        //[MiddlewareFilter(typeof(ReqParseMiddleware))]
         public StatusCodeResult Post([FromBody]string value)
         {
             return Ok();
