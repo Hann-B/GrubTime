@@ -2,6 +2,48 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
+      "Auth0.AuthenticationApi/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Auth0.Core": "4.0.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.1/Auth0.AuthenticationApi.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Auth0.AuthenticationApi.dll": {}
+        }
+      },
+      "Auth0.Core/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.2",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.1/Auth0.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Auth0.Core.dll": {}
+        }
+      },
+      "Auth0.ManagementApi/4.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Auth0.Core": "4.0.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.1/Auth0.ManagementApi.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Auth0.ManagementApi.dll": {}
+        }
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -4313,6 +4355,45 @@
     }
   },
   "libraries": {
+    "Auth0.AuthenticationApi/4.1.0": {
+      "sha512": "AVm3+UN6VprPTV2CfRnify2MWhH3wQrejYsCZZaxPMZfEWY9FiZnuDN0P2NEjL/aLVxFIeR7flERriNiZifDLA==",
+      "type": "package",
+      "path": "auth0.authenticationapi/4.1.0",
+      "files": [
+        "auth0.authenticationapi.4.1.0.nupkg.sha512",
+        "auth0.authenticationapi.nuspec",
+        "lib/netstandard1.1/Auth0.AuthenticationApi.dll",
+        "lib/netstandard1.1/Auth0.AuthenticationApi.pdb",
+        "lib/netstandard1.1/Auth0.AuthenticationApi.xml",
+        "readme.txt"
+      ]
+    },
+    "Auth0.Core/4.0.0": {
+      "sha512": "kzC0rb+lnvg4McXA5DL37PlFFmKYZ4hXbAMBr990Ste1VgWJMWAToYJtYG1Qs/QJoGZxkuh3/Ok9LwTrGcHk0A==",
+      "type": "package",
+      "path": "auth0.core/4.0.0",
+      "files": [
+        "auth0.core.4.0.0.nupkg.sha512",
+        "auth0.core.nuspec",
+        "lib/netstandard1.1/Auth0.Core.dll",
+        "lib/netstandard1.1/Auth0.Core.pdb",
+        "lib/netstandard1.1/Auth0.Core.xml",
+        "readme.txt"
+      ]
+    },
+    "Auth0.ManagementApi/4.2.0": {
+      "sha512": "kcObHO5NmLsO35Sf44N4jFhJoaSnXpI9TiGsiVHspHinGRBuYcHA0UzF2G/xmv+kpBz0gZQN0zPzjJ6uQrFlKQ==",
+      "type": "package",
+      "path": "auth0.managementapi/4.2.0",
+      "files": [
+        "auth0.managementapi.4.2.0.nupkg.sha512",
+        "auth0.managementapi.nuspec",
+        "lib/netstandard1.1/Auth0.ManagementApi.dll",
+        "lib/netstandard1.1/Auth0.ManagementApi.pdb",
+        "lib/netstandard1.1/Auth0.ManagementApi.xml",
+        "readme.txt"
+      ]
+    },
     "Libuv/1.9.1": {
       "sha512": "jb1ldEDudHcBMI9PIWMpolA+bMfiD1SCFRkVikGgwoknTvjekpRfVUlNs0ok6lhGVu6zdT/9YiehEHBLQxmUYw==",
       "type": "package",
@@ -11101,6 +11182,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.1": [
+      "Auth0.AuthenticationApi >= 4.1.0",
+      "Auth0.ManagementApi >= 4.2.0",
       "Microsoft.ApplicationInsights.AspNetCore >= 2.0.0",
       "Microsoft.AspNetCore >= 1.1.2",
       "Microsoft.AspNetCore.Authentication.Cookies >= 1.1.2",
@@ -11169,9 +11252,17 @@
             "target": "Package",
             "version": "1.1.1"
           },
+          "Auth0.AuthenticationApi": {
+            "target": "Package",
+            "version": "4.1.0"
+          },
           "Microsoft.EntityFrameworkCore.Design": {
             "target": "Package",
             "version": "1.1.2"
+          },
+          "Auth0.ManagementApi": {
+            "target": "Package",
+            "version": "4.2.0"
           },
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
             "target": "Package",

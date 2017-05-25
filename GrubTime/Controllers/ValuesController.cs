@@ -10,6 +10,7 @@ namespace GrubTime.Controllers
     [Route("api")]
     public class ValuesController : Controller
     {
+        [Authorize]
         [HttpGet]
         [Route("ping")]
         public string Ping()

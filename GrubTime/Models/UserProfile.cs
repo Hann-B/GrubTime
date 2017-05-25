@@ -8,9 +8,10 @@ namespace GrubTime.Models
 {
     public class UserProfile
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required(ErrorMessage ="Username is required")]
         public string Username { get; set; }
         public string Avatar { get; set; }
+        public string Name { get; set; }
     }
 }

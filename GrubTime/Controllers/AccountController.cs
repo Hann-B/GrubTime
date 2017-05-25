@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Authentication;
 using GrubTime.Models;
 using System.Security.Claims;
+using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
+using Auth0.ManagementApi;
 
 namespace GrubTime.Controllers
 {
@@ -15,40 +18,46 @@ namespace GrubTime.Controllers
     [Route("api/Account")]
     public class AccountController : Controller
     {
-      
         // GET: api/Account
         //get all profiles
-        //[HttpGet]
-        //public IEnumerable<UserProfile> Get()
-        //{
-        //    return HttpContext.User.Identities.;
-        //}
-
+        //[Authorize("create")]
+        [HttpGet]
+        public async Task AllAccountsAsync()
+        {
+            var apiClient = new ManagementApiClient("token", new Uri($"https://hlb.auth0.com/api/v2"));
+            await apiClient.Clients.GetAllAsync();
+        }
 
         // GET: api/Account/5
         //get one profile given and id
-        [Authorize]
-        [HttpGet("{id}", Name = "Get")]
-        public UserProfile Get(int id)
+        //[Authorize("read")]
+        [HttpGet]
+        public Object UserInformation()
         {
-            return new UserProfile()
+            string userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            string name = User.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+
+            return new UserProfile
             {
-                Id = id,
-                Username = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value,
-                Avatar = User.Claims.FirstOrDefault(c => c.Type == "picture")?.Value
+                Id = userId,
+                Name = name
             };
         }
-        
-        ////create a profile
-        //[Authorize]
-        //[HttpPost]
-        //public UserProfile Create([FromBody]string profile)
-        //{
-        //    return new UserProfile
-        //    {
-        //        Id=
-        //    };
-        //}
+
+        //create a profile
+        [HttpPost]
+        public UserProfile Create([FromBody]string profile)
+        {
+            var pro = JsonConvert.DeserializeObject<UserProfile>(profile);
+            var user = new UserProfile
+            {
+                Id = pro.Id,
+                Username=pro.Username,
+                Name=pro.Name,
+                Avatar=pro.Avatar
+            };
+            return user;
+        }
 
         // POST: api/Account
         [Authorize]

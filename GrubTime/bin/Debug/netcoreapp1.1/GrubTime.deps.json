@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "f9026b0339985c1913bdf0e29267821a878222fe"
+    "signature": "699c10fcb6261bd62a200a625eac9fa852b5ca27"
   },
   "compilationOptions": {
     "defines": [
@@ -23,6 +23,8 @@
     ".NETCoreApp,Version=v1.1": {
       "grubtime/1.0.0": {
         "dependencies": {
+          "Auth0.AuthenticationApi": "4.1.0",
+          "Auth0.ManagementApi": "4.2.0",
           "Microsoft.ApplicationInsights.AspNetCore": "2.0.0",
           "Microsoft.AspNetCore": "1.1.2",
           "Microsoft.AspNetCore.Authentication.Cookies": "1.1.2",
@@ -48,6 +50,45 @@
         },
         "compile": {
           "GrubTime.dll": {}
+        }
+      },
+      "auth0.authenticationapi/4.1.0": {
+        "dependencies": {
+          "Auth0.Core": "4.0.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.1/Auth0.AuthenticationApi.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.1/Auth0.AuthenticationApi.dll": {}
+        }
+      },
+      "auth0.core/4.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.2",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.1/Auth0.Core.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.1/Auth0.Core.dll": {}
+        }
+      },
+      "auth0.managementapi/4.2.0": {
+        "dependencies": {
+          "Auth0.Core": "4.0.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.1/Auth0.ManagementApi.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.1/Auth0.ManagementApi.dll": {}
         }
       },
       "microsoft.applicationinsights/2.2.0": {
@@ -3613,6 +3654,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "auth0.authenticationapi/4.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AVm3+UN6VprPTV2CfRnify2MWhH3wQrejYsCZZaxPMZfEWY9FiZnuDN0P2NEjL/aLVxFIeR7flERriNiZifDLA==",
+      "path": "auth0.authenticationapi/4.1.0",
+      "hashPath": "auth0.authenticationapi.4.1.0.nupkg.sha512"
+    },
+    "auth0.core/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kzC0rb+lnvg4McXA5DL37PlFFmKYZ4hXbAMBr990Ste1VgWJMWAToYJtYG1Qs/QJoGZxkuh3/Ok9LwTrGcHk0A==",
+      "path": "auth0.core/4.0.0",
+      "hashPath": "auth0.core.4.0.0.nupkg.sha512"
+    },
+    "auth0.managementapi/4.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kcObHO5NmLsO35Sf44N4jFhJoaSnXpI9TiGsiVHspHinGRBuYcHA0UzF2G/xmv+kpBz0gZQN0zPzjJ6uQrFlKQ==",
+      "path": "auth0.managementapi/4.2.0",
+      "hashPath": "auth0.managementapi.4.2.0.nupkg.sha512"
     },
     "microsoft.applicationinsights/2.2.0": {
       "type": "package",
