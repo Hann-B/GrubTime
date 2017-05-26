@@ -29,6 +29,7 @@ namespace GrubTime.Controllers
         }
 
         // GET: api/Favorites
+        [Authorize]
         [HttpGet]
         public IEnumerable<StarredPlaces> Get()
         {

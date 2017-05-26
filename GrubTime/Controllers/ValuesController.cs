@@ -17,17 +17,5 @@ namespace GrubTime.Controllers
         {
             return "Pong";
         }
-
-        [Authorize]
-        [HttpGet("claims")]
-        public object Claims()
-        {
-            return User.Claims.Select(c =>
-            new
-            {
-                Type = c.Type,
-                Value = c.Value
-            });
-        }
     }
 }

@@ -18,7 +18,7 @@ namespace GrubTime.Controllers
     [Route("api/Account")]
     public class AccountController : Controller
     {
-        private ManagementApiClient apiClient;
+        //private ManagementApiClient apiClient;
 
         //get a token
         //public GetToken()
@@ -72,16 +72,17 @@ namespace GrubTime.Controllers
         [HttpPost]
         public void Post([FromBody]string value)
         {
-
         }
 
         // PUT: api/Account/5
+        [Authorize]
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE: api/ApiWithActions/5
+        [Authorize]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
