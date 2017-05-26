@@ -29,28 +29,15 @@ namespace GrubTime.Controllers
         }
 
         // GET: api/Favorites
-        //[HttpGet]
-        //public IEnumerable<StarredPlaces> Get()
-        //{
-        //    var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //    //get all starred places for a user
-        //    return _context.StarredPlaces
-        //        .Where(u => u.UserToken == userId)
-        //        .ToList();
-        //}
-
-        //private readonly ClaimsPrincipal _caller;
-        //public FavoritesController(ClaimsPrincipal caller)
-        //{
-        //    _caller = caller;
-        //}
-        // GET: api/Favorites/5
-        //[HttpGet]
-        //public ActionResult GetClaim()
-        //{
-        //    return new JsonResult(_caller.Claims.Select(
-        //        c=> new { c.Type, c.Value }));
-        //}
+        [HttpGet]
+        public IEnumerable<StarredPlaces> Get()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            //get all starred places for a user
+            return _context.StarredPlaces
+                .Where(u => u.UserToken == userId)
+                .ToList();
+        }
 
         // POST: api/Favorites
         [HttpPut]
@@ -58,11 +45,7 @@ namespace GrubTime.Controllers
         public void Post([FromBody]StarredPlaces starredPlace)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            //save a place as starred
-            //var here = JsonConvert.DeserializeObject<StarredPlaces>(starredPlace);
             var starred = _context.StarredPlaces.FirstOrDefault(f => f.PlaceId == starredPlace.PlaceId && f.UserToken == userId);
-
-            //if not in the db
             if (starred == null)
             {
                 // create it
@@ -85,12 +68,6 @@ namespace GrubTime.Controllers
                 _context.StarredPlaces.Remove(starred);
             }
             _context.SaveChanges();
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
