@@ -8,5 +8,6 @@ namespace GrubTime.Models
     public class Google
     {
         public String Nearby { get; set; }
+        public String Details { get; set; }
     }
 }

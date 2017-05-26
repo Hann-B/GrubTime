@@ -27,36 +27,42 @@ namespace GrubTime.Middleware
 
         public async Task<int> Invoke(HttpContext httpContext)
         {
-            //TODO: Parse request coming for values of location and radius
-            var request = string.Empty;
-            using (var newRequest = new MemoryStream())
+            if (httpContext.Request.Method.ToUpper() != "POST")
             {
-                //read request
-                var bodyStr = "";
-                var req = httpContext.Request;
-
-                // Allows repeated use of the stream in ASP.Net Core
-                req.EnableRewind();
-
-                // Arguments: Stream, Encoding, detect encoding, buffer size 
-                // AND, the most important: keep stream opened
-                using (StreamReader reader
-                          = new StreamReader(req.Body, Encoding.UTF8, true, 1024, true))
-                {
-                    bodyStr = reader.ReadToEnd();
-                }
-
-                // Rewind, so the core is not lost when it looks to the body for the request
-                req.Body.Position = 0;
-
-                //assign data
-                var data = JsonConvert.DeserializeObject<NearbySearchVM>(bodyStr);
-
-                //store data
-                httpContext.Items.Add("parameters", data);
+                await _next(httpContext);
             }
-            await _next(httpContext);
-            var resultlist = httpContext.Items["results"]as PlacesApiQueryResponse;
+            else
+            {
+                //TODO: Parse request coming for values of location and radius
+                var request = string.Empty;
+                using (var newRequest = new MemoryStream())
+                {
+                    //read request
+                    var bodyStr = "";
+                    var req = httpContext.Request;
+
+                    // Allows repeated use of the stream in ASP.Net Core
+                    req.EnableRewind();
+
+                    // Arguments: Stream, Encoding, detect encoding, buffer size 
+                    // AND, the most important: keep stream opened
+                    using (StreamReader reader
+                              = new StreamReader(req.Body, Encoding.UTF8, true, 1024, true))
+                    {
+                        bodyStr = reader.ReadToEnd();
+                    }
+
+                    // Rewind, so the core is not lost when it looks to the body for the request
+                    req.Body.Position = 0;
+
+                    //assign data
+                    //var data = JsonConvert.DeserializeObject<NearbySearchVM>(bodyStr);
+
+                    //store data
+                    httpContext.Items.Add("parameters", bodyStr);
+                }
+                await _next(httpContext);
+            }
             return 200;
         }
     }

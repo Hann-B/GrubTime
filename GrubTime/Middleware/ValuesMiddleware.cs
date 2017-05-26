@@ -32,32 +32,38 @@ namespace GrubTime.Middleware
 
         public async Task<int> Invoke(HttpContext httpContext)
         {
-            var attr = httpContext.Items["parameters"] as NearbySearchVM;
-            
-
-            //inject data into google api
-            var placeApiUrl = string.Format(_google.Nearby,
-                attr.Location, attr.Radius);
-
-            //query google
-            HttpWebRequest query = (HttpWebRequest)WebRequest.Create(placeApiUrl);
-            WebResponse response = await query.GetResponseAsync();
-
-            //save results
-            var raw = String.Empty;
-            using (var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8, true, 1024, true))
+            if (httpContext.Request.Method.ToUpper() != "POST")
             {
-                raw = reader.ReadToEnd();
+                await _next(httpContext);
             }
+            else
+            {
+                var attr = httpContext.Items["parameters"] as NearbySearchVM;
 
-            //return to JSON
-            var allresults = JsonConvert.DeserializeObject<PlacesApiQueryResponse>(raw);
+                //inject data into google api
+                var placeApiUrl = string.Format(_google.Nearby,
+                    attr.Location, attr.Radius);
 
-            //save changes to package
-            httpContext.Items.Add("results", allresults);
-            httpContext.Response.ContentType = "application/json";
-            await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(allresults));
-            //await _next(httpContext);
+                //query google
+                HttpWebRequest query = (HttpWebRequest)WebRequest.Create(placeApiUrl);
+                WebResponse response = await query.GetResponseAsync();
+
+                //save results
+                var raw = String.Empty;
+                using (var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8, true, 1024, true))
+                {
+                    raw = reader.ReadToEnd();
+                }
+
+                //return to JSON
+                var allresults = JsonConvert.DeserializeObject<PlacesApiQueryResponse>(raw);
+
+                //save changes to package
+                httpContext.Items.Add("results", allresults);
+                httpContext.Response.ContentType = "application/json";
+                await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(allresults));
+                //await _next(httpContext);
+            }
             return 200;
         }
     }

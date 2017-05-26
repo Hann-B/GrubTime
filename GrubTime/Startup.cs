@@ -105,16 +105,12 @@ namespace GrubTime
             app.UseCors("AllowAll");
 
             //Middleware
-            //read request attain values
+
+            var GoogleApi = Configuration.GetSection("Google").Get<Google>();
+            //Search Middelware
             app.UseReqParseMiddleware();
-
-            //query api, write response
             app.UseValuesMiddleware();
-            var GoogleNearbyApi = Configuration.GetSection("Google").Get<Google>();
-            app.UseValuesMiddleware(GoogleNearbyApi);
-
-            //beautify response
-            //app.UseResponseMiddleware();
+            app.UseValuesMiddleware(GoogleApi);
 
             //app.Map is used to build mini pipeline for certain URL
             //app.MapWhen is conditional
@@ -122,8 +118,12 @@ namespace GrubTime
             //ie: ~/Search
             //app.Run = end of the line middleware
 
-            app.UseMvc();
-
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Places}/{action=Post}/{id?}");
+            });
         }
 
     }
