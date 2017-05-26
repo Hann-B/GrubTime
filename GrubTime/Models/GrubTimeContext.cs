@@ -12,8 +12,6 @@ namespace GrubTime.Models
         public GrubTimeContext(DbContextOptions<GrubTimeContext> options)
             : base(options) { }
 
-        public DbSet<UserProfile> Profiles { get; set; }
-        public DbSet<Restaurant> Places { get; set; }
         public DbSet<StarredPlaces> StarredPlaces { get; set; }
     }
 }

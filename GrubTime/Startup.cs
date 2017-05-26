@@ -69,7 +69,7 @@ namespace GrubTime
             services.AddRouting();
 
             services.AddDbContext<GrubTimeContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("Database")));
+            options.UseSqlServer(Configuration["Database:DefaultConnection"]));
 
             //Auth0 object to be injected
             //services.Configure<Auth0Settings>(Configuration.GetSection("Auth0"));
@@ -105,18 +105,11 @@ namespace GrubTime
             app.UseCors("AllowAll");
 
             //Middleware
-
             var GoogleApi = Configuration.GetSection("Google").Get<Google>();
             //Search Middelware
             app.UseReqParseMiddleware();
-            app.UseValuesMiddleware();
+           // app.UseValuesMiddleware();
             app.UseValuesMiddleware(GoogleApi);
-
-            //app.Map is used to build mini pipeline for certain URL
-            //app.MapWhen is conditional
-            //when condition is met middleware is ran 
-            //ie: ~/Search
-            //app.Run = end of the line middleware
 
             app.UseMvc(routes =>
             {

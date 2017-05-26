@@ -8,9 +8,10 @@ using GrubTime.Models;
 namespace GrubTime.Migrations
 {
     [DbContext(typeof(GrubTimeContext))]
-    partial class GrubTimeContextModelSnapshot : ModelSnapshot
+    [Migration("20170526181346_TableStructure")]
+    partial class TableStructure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

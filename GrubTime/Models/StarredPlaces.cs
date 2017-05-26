@@ -10,10 +10,9 @@ namespace GrubTime.Models
         public int Id { get; set; }
 
         //Restaurant
-        public int PlaceId { get; set; }
-        public Restaurant StarredPlace { get; set; }
+        public string PlaceId { get; set; }
+        public bool IsStarred { get; set; } = false;
         //User
-        public int UserId { get; set; }
-        public UserProfile Profile { get; set; }
+        public string UserToken { get; set; }
     }
 }

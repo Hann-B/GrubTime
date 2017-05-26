@@ -28,6 +28,7 @@ namespace GrubTime.Controllers
         {
             _google = optionsAccessor.Value;
         }
+
         //Nearby Searches
         // POST: api/Places
         [HttpPost]
@@ -40,7 +41,6 @@ namespace GrubTime.Controllers
         [HttpGet]
         public async Task<object> DetailsAsync(string id)
         {
-
             var detailApiUrl = string.Format(_google.Details, id);
             HttpWebRequest query = (HttpWebRequest)WebRequest.Create(detailApiUrl);
             WebResponse response = await query.GetResponseAsync();
