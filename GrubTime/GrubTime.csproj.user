@@ -9,5 +9,6 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>GrubTime.Models.GrubTimeContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
+    <NameOfLastUsedPublishProfile>grubtime - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
