@@ -11211,10 +11211,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hanna\\Documents\\Visual Studio 2017\\Projects\\GrubTime\\GrubTime\\GrubTime.csproj",
+      "projectUniqueName": "C:\\Users\\Hanna\\documents\\visual studio 2017\\Projects\\GrubTime\\GrubTime\\GrubTime.csproj",
       "projectName": "GrubTime",
-      "projectPath": "C:\\Users\\Hanna\\Documents\\Visual Studio 2017\\Projects\\GrubTime\\GrubTime\\GrubTime.csproj",
-      "outputPath": "C:\\Users\\Hanna\\Documents\\Visual Studio 2017\\Projects\\GrubTime\\GrubTime\\obj\\",
+      "projectPath": "C:\\Users\\Hanna\\documents\\visual studio 2017\\Projects\\GrubTime\\GrubTime\\GrubTime.csproj",
+      "outputPath": "C:\\Users\\Hanna\\documents\\visual studio 2017\\Projects\\GrubTime\\GrubTime\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"

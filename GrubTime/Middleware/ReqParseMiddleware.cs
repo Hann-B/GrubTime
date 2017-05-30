@@ -55,9 +55,6 @@ namespace GrubTime.Middleware
                     // Rewind, so the core is not lost when it looks to the body for the request
                     req.Body.Position = 0;
 
-                    //assign data
-                    //var data = JsonConvert.DeserializeObject<NearbySearchVM>(bodyStr);
-
                     //store data
                     httpContext.Items.Add("parameters", bodyStr);
                 }

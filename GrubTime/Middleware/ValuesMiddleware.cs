@@ -38,7 +38,9 @@ namespace GrubTime.Middleware
             }
             else
             {
-                var attr = httpContext.Items["parameters"] as NearbySearchVM;
+                //var attr = httpContext.Items["parameters"] as NearbySearchVM;
+
+                var attr = JsonConvert.DeserializeObject<NearbySearchVM>(httpContext.Items["parameters"].ToString());
 
                 //inject data into google api
                 var placeApiUrl = string.Format(_google.Nearby,
