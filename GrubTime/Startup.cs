@@ -43,12 +43,10 @@ namespace GrubTime
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
+                    builder => builder.AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader();
-                    });
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
 
             services.AddMvc();
@@ -108,7 +106,7 @@ namespace GrubTime
             var GoogleApi = Configuration.GetSection("Google").Get<Google>();
             //Search Middelware
             app.UseReqParseMiddleware();
-           // app.UseValuesMiddleware();
+            // app.UseValuesMiddleware();
             app.UseValuesMiddleware(GoogleApi);
 
             app.UseMvc(routes =>
