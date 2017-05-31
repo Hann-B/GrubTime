@@ -18,6 +18,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace GrubTime
 {
@@ -51,6 +52,8 @@ namespace GrubTime
 
             services.AddMvc();
 
+            services.AddLogging();
+
             string domain = $"https://{Configuration["Auth0:Domain"]}/";
             services.AddAuthorization(o =>
             {
@@ -64,13 +67,22 @@ namespace GrubTime
             services.AddOptions();
             services.Configure<Google>(Configuration.GetSection("Google"));
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Grubtime API",
+                    Description = "An app used to search restuarants open near you.",
+                    TermsOfService = "None",
+                    Contact = new Contact { Name = "Hanna Bernard", Email = "Hlbernard124@gmail.com", Url = "https://github.com/hann-b" }
+                });
+            });
+
             services.AddRouting();
 
             services.AddDbContext<GrubTimeContext>(options =>
             options.UseSqlServer(Configuration["Database:DefaultConnection"]));
-
-            //Auth0 object to be injected
-            //services.Configure<Auth0Settings>(Configuration.GetSection("Auth0"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -112,9 +124,16 @@ namespace GrubTime
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Places}/{action=Post}/{id?}");
+                    name: "Get",
+                    template: "{controller}/{action}/{id?}");
             });
+
+            app.UseSwagger(null);
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Grubtime API V1");
+            });
+
         }
 
     }
