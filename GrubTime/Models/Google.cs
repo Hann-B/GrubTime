@@ -9,5 +9,6 @@ namespace GrubTime.Models
     {
         public String Nearby { get; set; }
         public String Details { get; set; }
+        public String Directions { get; set; }
     }
 }
