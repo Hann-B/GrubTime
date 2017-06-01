@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GrubTime.Controllers
 {
-    [Produces("application/json")]
-    public class HomeController : Controller
+    [Route("api/[controller]")]
+    public class ValuesController : Controller
     {
         [HttpGet]
         public IActionResult Get()
