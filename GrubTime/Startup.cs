@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 
 namespace GrubTime
 {
@@ -51,6 +53,10 @@ namespace GrubTime
             });
 
             services.AddMvc();
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAll"));
+            });
 
             services.AddLogging();
 
@@ -120,7 +126,7 @@ namespace GrubTime
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "Get",
+                    name: "default",
                     template: "{controller}/{action}/{id?}");
             });
 
