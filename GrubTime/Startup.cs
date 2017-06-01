@@ -55,13 +55,7 @@ namespace GrubTime
             services.AddLogging();
 
             string domain = $"https://{Configuration["Auth0:Domain"]}/";
-            services.AddAuthorization(o =>
-            {
-                o.AddPolicy("read",
-                policy => policy.Requirements.Add(new HasScopeRequirement("read", domain)));
-                o.AddPolicy("create",
-                policy => policy.Requirements.Add(new HasScopeRequirement("create", domain)));
-            });
+            services.AddAuthorization();
 
 
             services.AddOptions();
@@ -69,6 +63,7 @@ namespace GrubTime
 
             services.AddSwaggerGen(c =>
             {
+                c.OperationFilter<AddRequiredHeaderParameter>();
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
@@ -77,6 +72,7 @@ namespace GrubTime
                     TermsOfService = "None",
                     Contact = new Contact { Name = "Hanna Bernard", Email = "Hlbernard124@gmail.com", Url = "https://github.com/hann-b" }
                 });
+                c.DescribeAllEnumsAsStrings();
             });
 
             services.AddRouting();
