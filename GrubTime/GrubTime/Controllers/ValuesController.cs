@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GrubTime.Controllers
 {
+    /// <summary>
+    /// Home Controller -- no function
+    /// </summary>
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {

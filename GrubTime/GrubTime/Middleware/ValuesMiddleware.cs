@@ -17,12 +17,19 @@ using System.Net.Http;
 
 namespace GrubTime.Middleware
 {
+    /// <summary>
+    /// Middleware used to talk to google
+    /// </summary>
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
     public class ValuesMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly Google _google;
-
+        /// <summary>
+        /// Middleware constructor
+        /// </summary>
+        /// <param name="next"></param>
+        /// <param name="optionsAccessor"></param>
         public ValuesMiddleware(RequestDelegate next,
             IOptions<Google> optionsAccessor)
         {
@@ -30,6 +37,11 @@ namespace GrubTime.Middleware
             _google = optionsAccessor.Value;
         }
 
+        /// <summary>
+        /// Using the parameters, search google for restaurants in the searched are that are open now.
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async Task<int> Invoke(HttpContext httpContext)
         {
             if (httpContext.Request.Method.ToUpper() != "POST")
@@ -70,7 +82,9 @@ namespace GrubTime.Middleware
         }
     }
 
-    // Extension method used to add the middleware to the HTTP request pipeline.
+    /// <summary>
+    /// Extension method used to add the middleware to the HTTP request pipeline.
+    /// </summary>
     public static class ValuesMiddlewareExtensions
     {
         public static IApplicationBuilder UseValuesMiddleware(this IApplicationBuilder builder)

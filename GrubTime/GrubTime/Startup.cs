@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace GrubTime
 {
@@ -79,6 +80,8 @@ namespace GrubTime
                     Contact = new Contact { Name = "Hanna Bernard", Email = "Hlbernard124@gmail.com", Url = "https://github.com/hann-b" }
                 });
                 c.DescribeAllEnumsAsStrings();
+                var basepath = PlatformServices.Default.Application.ApplicationBasePath;
+                c.IncludeXmlComments(basepath + "\\.xml");
             });
 
             services.AddRouting();

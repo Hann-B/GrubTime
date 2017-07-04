@@ -16,3 +16,4 @@ C:\Users\Hanna\Documents\Visual Studio 2017\Projects\GrubTime\GrubTime\GrubTime\
 C:\Users\Hanna\Documents\Visual Studio 2017\Projects\GrubTime\GrubTime\GrubTime\obj\Debug\netcoreapp1.1\GrubTime.AssemblyInfo.cs
 C:\Users\Hanna\Documents\Visual Studio 2017\Projects\GrubTime\GrubTime\GrubTime\obj\Debug\netcoreapp1.1\GrubTime.dll
 C:\Users\Hanna\Documents\Visual Studio 2017\Projects\GrubTime\GrubTime\GrubTime\obj\Debug\netcoreapp1.1\GrubTime.pdb
+C:\Users\Hanna\Documents\Visual Studio 2017\Projects\GrubTime\GrubTime\GrubTime\bin\Debug\netcoreapp1.1\.xml

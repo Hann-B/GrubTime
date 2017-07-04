@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GrubTime.Models
 {
+    /// <summary>
+    /// Database for GrubTime users
+    /// </summary>
     public class GrubTimeContext: DbContext
     {
         public GrubTimeContext(DbContextOptions<GrubTimeContext> options)

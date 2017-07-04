@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GrubTime</name>
+    </assembly>
+    <members>
+        <member name="T:GrubTime.Controllers.DirectionsController">
+            <summary>
+            Directions to your restaurant of liking from given coordinates
+            </summary>
+        </member>
+        <member name="M:GrubTime.Controllers.DirectionsController.#ctor(Microsoft.Extensions.Options.IOptions{GrubTime.Models.Google})">
+            <summary>
+            Google API query to navigate to your chosen restaurant
+            </summary>
+            <param name="optionsAccessor"></param>
+        </member>
+        <member name="M:GrubTime.Controllers.DirectionsController.DirectionsAsync(System.String,System.String)">
+            <summary>
+            Directions to the restaurant from given coordinates
+            </summary>
+            <param name="location"></param>
+            <param name="placeId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GrubTime.Controllers.FavoritesController">
+            <summary>
+            Favorite Restaurants
+            </summary>
+        </member>
+        <member name="M:GrubTime.Controllers.FavoritesController.#ctor(GrubTime.Models.GrubTimeContext)">
+            <summary>
+            Database of favorited restaurants
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:GrubTime.Controllers.FavoritesController.Get">
+            <summary>
+            List of all starred restaurants by a user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GrubTime.Controllers.FavoritesController.Post(GrubTime.Models.StarredPlaces)">
+            <summary>
+            Favorite or unfavorite a restaurant
+            </summary>
+            <param name="starredPlace"></param>
+        </member>
+        <member name="T:GrubTime.Controllers.PlacesController">
+            <summary>
+            Restaurants
+            </summary>
+        </member>
+        <member name="M:GrubTime.Controllers.PlacesController.#ctor(Microsoft.Extensions.Options.IOptions{GrubTime.Models.Google})">
+            <summary>
+            Google API query 
+            </summary>
+            <param name="optionsAccessor"></param>
+        </member>
+        <member name="M:GrubTime.Controllers.PlacesController.Post(System.String)">
+            <summary>
+            Using the coordinates and a radius, a google search is conducted to locate open restaurants 
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GrubTime.Controllers.PlacesController.DetailsAsync(System.String)">
+            <summary>
+            Get more details on a restaurant by the place id from google 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GrubTime.Controllers.ValuesController">
+            <summary>
+            Home Controller -- no function
+            </summary>
+        </member>
+        <member name="T:GrubTime.Middleware.ReqParseMiddleware">
+            <summary>
+            Middleware used to read in parameters from the user
+            </summary>
+        </member>
+        <member name="M:GrubTime.Middleware.ReqParseMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            Middleware constructor
+            </summary>
+            <param name="next"></param>
+        </member>
+        <member name="M:GrubTime.Middleware.ReqParseMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Read coordinates and radius to set up search parameters
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GrubTime.Middleware.ReqParseMiddlewareExtensions">
+            <summary>
+            Extension method used to add the middleware to the HTTP request pipeline.
+            </summary>
+        </member>
+        <member name="T:GrubTime.Middleware.ValuesMiddleware">
+            <summary>
+            Middleware used to talk to google
+            </summary>
+        </member>
+        <member name="M:GrubTime.Middleware.ValuesMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Options.IOptions{GrubTime.Models.Google})">
+            <summary>
+            Middleware constructor
+            </summary>
+            <param name="next"></param>
+            <param name="optionsAccessor"></param>
+        </member>
+        <member name="M:GrubTime.Middleware.ValuesMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Using the parameters, search google for restaurants in the searched are that are open now.
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GrubTime.Middleware.ValuesMiddlewareExtensions">
+            <summary>
+            Extension method used to add the middleware to the HTTP request pipeline.
+            </summary>
+        </member>
+        <member name="T:GrubTime.Models.Google">
+            <summary>
+            Google APIs
+            </summary>
+        </member>
+        <member name="P:GrubTime.Models.Google.Nearby">
+            <summary>
+            Google Places API
+            </summary>
+        </member>
+        <member name="P:GrubTime.Models.Google.Details">
+            <summary>
+            Google Place Details API
+            </summary>
+        </member>
+        <member name="P:GrubTime.Models.Google.Directions">
+            <summary>
+            Google Directions API
+            </summary>
+        </member>
+        <member name="T:GrubTime.Models.GrubTimeContext">
+            <summary>
+            Database for GrubTime users
+            </summary>
+        </member>
+        <member name="T:GrubTime.ViewModels.DirectionsVM">
+            <summary>
+            Get Directions
+            </summary>
+        </member>
+        <member name="P:GrubTime.ViewModels.DirectionsVM.Longitude">
+            <summary>
+            What is your longitude
+            </summary>
+        </member>
+        <member name="P:GrubTime.ViewModels.DirectionsVM.Latitude">
+            <summary>
+            What is you latitude
+            </summary>
+        </member>
+        <member name="P:GrubTime.ViewModels.DirectionsVM.Location">
+            <summary>
+            Your Coordinates
+            </summary>
+        </member>
+        <member name="T:GrubTime.ViewModels.NearbySearchVM">
+            <summary>
+            Search area for restaurants
+            </summary>
+        </member>
+        <member name="P:GrubTime.ViewModels.NearbySearchVM.Longitude">
+            <summary>
+            What is your longitude
+            </summary>
+        </member>
+        <member name="P:GrubTime.ViewModels.NearbySearchVM.Latitude">
+            <summary>
+            What is your latitude
+            </summary>
+        </member>
+        <member name="P:GrubTime.ViewModels.NearbySearchVM.Radius">
+            <summary>
+            What is the radius you would like to search
+            </summary>
+        </member>
+        <member name="P:GrubTime.ViewModels.NearbySearchVM.Location">
+            <summary>
+            Your coordinates
+            </summary>
+        </member>
+    </members>
+</doc>

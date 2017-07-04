@@ -15,16 +15,27 @@ using GrubTime.Models;
 
 namespace GrubTime.Middleware
 {
+    /// <summary>
+    /// Middleware used to read in parameters from the user
+    /// </summary>
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
     public class ReqParseMiddleware
     {
         private readonly RequestDelegate _next;
-
+        /// <summary>
+        /// Middleware constructor
+        /// </summary>
+        /// <param name="next"></param>
         public ReqParseMiddleware(RequestDelegate next)
         {
             _next = next;
         }
 
+        /// <summary>
+        /// Read coordinates and radius to set up search parameters
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async Task<int> Invoke(HttpContext httpContext)
         {
             if (httpContext.Request.Method.ToUpper() != "POST")
@@ -64,7 +75,9 @@ namespace GrubTime.Middleware
         }
     }
 
-    // Extension method used to add the middleware to the HTTP request pipeline.
+    /// <summary>
+    /// Extension method used to add the middleware to the HTTP request pipeline.
+    /// </summary>
     public static class ReqParseMiddlewareExtensions
     {
         public static IApplicationBuilder UseReqParseMiddleware(this IApplicationBuilder builder)

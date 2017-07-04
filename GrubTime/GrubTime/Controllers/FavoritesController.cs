@@ -17,17 +17,27 @@ using Newtonsoft.Json;
 
 namespace GrubTime.Controllers
 {
+    /// <summary>
+    /// Favorite Restaurants
+    /// </summary>
     [Produces("application/json")]
     [Route("api/Favorites")]
     public class FavoritesController : Controller
     {
         private readonly GrubTimeContext _context;
-
+        /// <summary>
+        /// Database of favorited restaurants
+        /// </summary>
+        /// <param name="context"></param>
         public FavoritesController(GrubTimeContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// List of all starred restaurants by a user
+        /// </summary>
+        /// <returns></returns>
         // GET: api/Favorites
         [Authorize]
         [HttpGet]
@@ -40,6 +50,10 @@ namespace GrubTime.Controllers
                 .ToList();
         }
 
+        /// <summary>
+        /// Favorite or unfavorite a restaurant
+        /// </summary>
+        /// <param name="starredPlace"></param>
         // POST: api/Favorites
         [HttpPut]
         [Authorize]

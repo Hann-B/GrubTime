@@ -13,16 +13,29 @@ using Newtonsoft.Json;
 
 namespace GrubTime.Controllers
 {
+    /// <summary>
+    /// Directions to your restaurant of liking from given coordinates
+    /// </summary>
     [Produces("application/json")]
     [Route("api/Directions")]
     public class DirectionsController : Controller
     {
         readonly private Google _google;
+        /// <summary>
+        /// Google API query to navigate to your chosen restaurant
+        /// </summary>
+        /// <param name="optionsAccessor"></param>
         public DirectionsController(IOptions<Google> optionsAccessor)
         {
             _google = optionsAccessor.Value;
         }
 
+        /// <summary>
+        /// Directions to the restaurant from given coordinates
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="placeId"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<object> DirectionsAsync(string location, string placeId)
         {

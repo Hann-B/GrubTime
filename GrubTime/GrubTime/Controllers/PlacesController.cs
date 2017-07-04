@@ -19,17 +19,28 @@ using Microsoft.Extensions.Options;
 
 namespace GrubTime.Controllers
 {
+    /// <summary>
+    /// Restaurants
+    /// </summary>
     [Produces("application/json")]
     [Route("api/Places")]
     public class PlacesController : Controller
     {
         readonly private Google _google;
+        /// <summary>
+        /// Google API query 
+        /// </summary>
+        /// <param name="optionsAccessor"></param>
         public PlacesController(IOptions<Google> optionsAccessor)
         {
             _google = optionsAccessor.Value;
         }
 
-        //Nearby Searches
+        /// <summary>
+        /// Using the coordinates and a radius, a google search is conducted to locate open restaurants 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         // POST: api/Places
         [HttpPost]
         public StatusCodeResult Post([FromBody]string value)
@@ -37,7 +48,11 @@ namespace GrubTime.Controllers
             return Ok();
         }
 
-        //Restuarant details
+        /// <summary>
+        /// Get more details on a restaurant by the place id from google 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<object> DetailsAsync(string id)
         {
